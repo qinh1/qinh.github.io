@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>photos</title>
+    <link href="/2022/08/17/photos/"/>
+    <url>/2022/08/17/photos/</url>
+    
+    <content type="html"><![CDATA[<img src="/2022/08/17/photos/p4.jpg" class="" title="p1"><img src="/2022/08/17/photos/p5.jpg" class="" title="p2"><img src="/2022/08/17/photos/p6.jpg" class="" title="p3"><img src="/2022/08/17/photos/p7.jpg" class="" title="p4"><img src="/2022/08/17/photos/p8.jpg" class="" title="p5"><img src="/2022/08/17/photos/p9.jpg" class="" title="p6">]]></content>
+    
+    
+    <categories>
+      
+      <category>碎片</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>碎片</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>IOC</title>
+    <link href="/2022/08/17/IOC/"/>
+    <url>/2022/08/17/IOC/</url>
+    
+    <content type="html"><![CDATA[<h2 id="IOC本质"><a href="#IOC本质" class="headerlink" title="IOC本质"></a>IOC本质</h2><p>​控制反转(Inversion of Control)是一种设计思想,IOC指的是将原本在程序由我们手动创建对象的控制权,在使用Spring后,将这个控制权交给Spring框架来管理,由Spring来负责控制对象的生命周期(比如创建-销毁) 和对象之间的依赖关系</p><p>​<strong>当某个Java实例需要另一个 Java 实例时，传统的方法是由调用者创建被调用者的实例（例如，使用 new 关键字获得被调用者实例），而使用 Spring框架后，被调用者的实例不再由调用者创建，而是由 Spring 容器创建，这称为控制反转</strong>*</p><p>​此处会引进另一个问题:<strong>Spring Bean的生命周期是怎样的?</strong></p><p>​DI(依赖注入)<strong>Dependency Injection</strong>是IOC的一种方法,也有人认为DI只是IOC的另一种说法,没有IOC的程序中,我们使用面向对象编程,对象的创建与对象间的依赖关系完全编码在程序中,对象的创建由程序自己控制,控制反转后对象的创建转移给第三方,个人认为控制反转就是:获得依赖对象的方式反转了.</p><p>​<img src="/2022/08/17/IOC/IOC.png" class="" title="img1"></p><p>​<img src="/2022/08/17/IOC/IOC2.png" class="" title="img2"></p><p>​IOC是Spring框架的核心内容,使用多种方式完美地实现了IOC,可以使用xml配置,也可以使用注解,新版本的Spring也可以零配置实现IOC</p><p>​Spring容器在初始化时先读取配置文件,根据配置文件或元数据创建与组织对象存入容器中,程序使用时再从IOC容器中取出需要的对象.</p><p>​采用XML方式配置bean的时候,Bean的定义信息是和实现分离的,而采用注解的方式可以把两者合为一体,Bean的定义信息直接以主机的形式定义在了实现类中,从而达到了零配置的目的</p><p>​控制反转是一种通过描述(XML或注解)并通过第三方去生产或者获取特定对象的方式.在Spring中实现控制反转的是IOC容器,其中实现方法就是依赖注入(Dependency Injection,DI)</p><p>​<strong>控制</strong>:谁来控制对象的创建,传统应用程序的对象是由程序本身控制的,使用Spring之后,对象是由spring来创建的</p><p>​**反转:**程序本身不创建对象,而变成被动的接收对象</p><p>​<strong>依赖注入</strong>:利用set注入 构造器注入 接口注入来进行注入的</p><p>​IOC是一种编程思想,由主动的编程变成被动的接收</p><h2 id="什么是依赖注入"><a href="#什么是依赖注入" class="headerlink" title="什么是依赖注入"></a>什么是依赖注入</h2><p>​Dependency Injection,指的是应用程序在运行时,依赖IOC容器来动态注入组件所需要的某个依赖对象,Spring的DI具体就是通过反射实现注入的,反射允许程序在运行的时候动态的生成对象,执行的对象的方法,改变对象的属性等.</p><p>​理解DI的关键是:”谁依赖谁,为什么需要依赖,谁注入谁,注入了什么”</p><p>​ <strong>谁注入了谁:应用程序依赖于IOC容器</strong></p><p>​ <strong>为什么要需要依赖</strong>:应用程序需要IOC容器来提供组件需要的外部资源**</p><p>​     <strong>谁注入了谁:IOC容器注入应用程序某个对象,即应用程序的对象</strong>**</p><p>​ <strong>注入了什么</strong>:注入某个对象所需要的外部资源(包括对象,资源,常量数据)**</p><h3 id="依赖注入的好处"><a href="#依赖注入的好处" class="headerlink" title="依赖注入的好处:"></a>依赖注入的好处:</h3><p>​通过依赖注入,我们只需要简单的配置,而不需要任何代码就可指定目标需要的资源,完成自身的业务逻辑,而不需要关心具体的资源来自何处,由谁实现</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>原创笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>spring</tag>
+      
+      <tag>java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>WebSocket</title>
+    <link href="/2022/08/17/WebSocket/"/>
+    <url>/2022/08/17/WebSocket/</url>
+    
+    <content type="html"><![CDATA[<h1 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h1><h2 id="1-1-WebSocket介绍"><a href="#1-1-WebSocket介绍" class="headerlink" title="1.1 WebSocket介绍"></a>1.1 WebSocket介绍</h2><p>WebSocket是一种网络通信协议,定义了它的通信标准</p><p>WebSocket是<strong>HTML5</strong> 开始提供的一种在单个TCP连接上全双工通信的协议</p><p>HTTP协议是一种<strong>无状态,无连接,单向</strong>的应用层协议,它采用了请求&#x2F;响应模型.<strong>通信请求只能由客户做出应答处理</strong>!</p><p>这种通信模型有一个弊端:<strong>HTTP 协议无法实现服务器主动向客户端发起消息</strong></p><p>这种单向请求的特点,注定了如果服务器有连接的状态变化,客户端要获知就非常麻烦,大多数Web应用程序将通过Ajax请求实现长轮询,轮询的效率低,非常浪费资源(因为必须不停连接,或者HTTP连接始终打开)</p><p>HTTP协议:</p><img src="/2022/08/17/WebSocket/Http.png" class="" title="img1"><p>WebSocket协议:</p><img src="/2022/08/17/WebSocket/WebSocket.png" class="" title="img2"><h2 id="1-2-WebSocket协议"><a href="#1-2-WebSocket协议" class="headerlink" title="1.2 WebSocket协议"></a>1.2 WebSocket协议</h2><p>本协议由两部分:握手和数据传输</p><p>握手是HTTP协议的.</p><p>来自客户端的握手看起来像如下形式</p><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-keyword">GET</span> <span class="hljs-string">ws://localhost/chat</span> <span class="hljs-meta">HTTP/1.1</span><br><span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>localhost<br>Upgrade:websocket<br>Connection:Upgrade<br><span class="hljs-attribute">Sec-WebSocket-key</span><span class="hljs-punctuation">: </span><br>Sec-WebSocket-Extensions:permessage-deflate<br>Sec-webSocket-Version:13<br></code></pre></td></tr></table></figure><p>来自服务器的握手看起来像如下格式:</p><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-meta">HTTP/1.1</span> <span class="hljs-number">101</span> Switching Protocols<br><span class="hljs-attribute">Upgrade</span><span class="hljs-punctuation">: </span>websocket<br>Connection:Upgrade<br><span class="hljs-attribute">Sec-WebSocket-Accept</span>:<br>Sec-WebSocket-Extensions:permessage-deflate<br></code></pre></td></tr></table></figure><p>字段说明:</p><table><thead><tr><th>请求头名称</th><th>说明</th></tr></thead><tbody><tr><td>Connection<br />Upgrade</td><td>标识该Http请求是一个协议升级请求</td></tr><tr><td>Upgrade<br />WebSocket</td><td>协议升级为WebSocket协议</td></tr><tr><td>Sec-WebSocket-<br />Version: 13</td><td>客户端支持WebSocket的版本</td></tr><tr><td>Sec-WebSocket-<br />Key</td><td>客户端采用base64编码的24位随机字符序列,服务器接收客户端HTTP协议升级的证明,要求服务端相应一个对应加密的Sec-WebSocket-Accpet头信息作为应答</td></tr><tr><td>Sec-WebSocket-<br />Extensions</td><td>协议拓展类型</td></tr></tbody></table><h2 id="1-3-客户端-浏览器-实现"><a href="#1-3-客户端-浏览器-实现" class="headerlink" title="1.3 客户端(浏览器)实现"></a>1.3 客户端(浏览器)实现</h2><h3 id="1-3-1-WebSocket对象"><a href="#1-3-1-WebSocket对象" class="headerlink" title="1.3.1 WebSocket对象"></a>1.3.1 WebSocket对象</h3><p>实现WebSocket的Web浏览器将通过WebScoket对象公开的所有必需的客户端功能,(主要指支持HTML5的浏览器).</p><p>以下API用于创建WebSocket对象:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> ws =<span class="hljs-keyword">new</span> <span class="hljs-title class_">WebSocket</span>(url);<br></code></pre></td></tr></table></figure><blockquote><p>参数url格式说明: WebSocket : &#x2F;&#x2F;ip地址:端口号&#x2F;资源名称(本地端口可不写)</p></blockquote><h3 id="1-3-2-WebSocket事件"><a href="#1-3-2-WebSocket事件" class="headerlink" title="1.3.2 WebSocket事件"></a>1.3.2 WebSocket事件</h3><p>WebSocket 对象的相关事件</p><table><thead><tr><th>事件</th><th>事件处理程序</th><th>描述</th></tr></thead><tbody><tr><td>open</td><td>WebSocket对象.onopen</td><td>连接建立时触发</td></tr><tr><td>message</td><td>WebSocket对象.onmessage</td><td>客户端接收服务端数据时触发</td></tr><tr><td>error</td><td>WebSocket对象.onerror</td><td>通信发生错误时触发</td></tr><tr><td>close</td><td>WebSocket对象.onclose</td><td>连接关闭时触发</td></tr></tbody></table><h3 id="1-3-3-WebSocket方法"><a href="#1-3-3-WebSocket方法" class="headerlink" title="1.3.3 WebSocket方法"></a>1.3.3 WebSocket方法</h3><p>WebSocket对象的相关方法</p><table><thead><tr><th>方法</th><th>描述</th></tr></thead><tbody><tr><td>send()</td><td>使用连接发送数据</td></tr></tbody></table><h3 id="1-4-服务端实现"><a href="#1-4-服务端实现" class="headerlink" title="1.4 服务端实现"></a>1.4 服务端实现</h3><p>Tomcat的7.0.5 版本开始支持WebSocket,并且实现了Java WebSocket规范(JSR356).</p><p>Java WebSocket 应用由一系列的WebSocketEndPoint组成. EndPoint是一个Java对象,代表WebSocket连接的另一端,对于服务端,我们可以视为处理具体WebSocket消息的接口,就像Servlet+JSP一样.</p><p>我们可以通过两种方式定义EndPoint:</p><ul><li>第一种是编程式,即继承类 javax.webSocket.Endpoint并实现其方法.</li><li>第二种是注解式,即定义一个POJO,并添加 @ServerEndPoint相关注解</li></ul><p>EndPoint实例在WebSocket握手时创建,并在客户端与服务端连接过程中有效,最后在连接关闭时结束,在Endpoint接口中明确定义了与其生命周期相关的方法,规范实现者确保生命周期的各个阶段调用实例的相关方法,生命周期方法如下:</p><table><thead><tr><th>方法</th><th>含义描述</th></tr></thead><tbody><tr><td>onClose</td><td>当会话关闭时调用</td></tr><tr><td>onOpen</td><td>当开启一个新的会话时调用,该方法时客户端与服务器成功后调用的方法</td></tr><tr><td>onError</td><td>当连接过程时调用</td></tr></tbody></table>]]></content>
+    
+    
+    <categories>
+      
+      <category>原创笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>协议</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Thymeleaf</title>
+    <link href="/2022/08/17/Thymeleaf/"/>
+    <url>/2022/08/17/Thymeleaf/</url>
+    
+    <content type="html"><![CDATA[<h2 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h2><p>​前端交给我们的页面,是html页面,如果是我们以前开发,我们需要把他们转成jsp页面,jsp好处就是当我们查出一些数据转发到JSP页面以后,我们可以用jsp轻松实现数据的显示,及交互等,jsp支持非常强大的功能,包括能写java代码,但是呢,我们现在这种情况,SpringBoot这个项目首先是以jar的方式,不是war,像第二,我们用的还是嵌入式的Tomcat,所以呢,他现在默认是不支持jsp的</p><p>​那不支持jsp,如果我们直接用纯静态页面的方式,那给我们开发会带来非常大的麻烦,那怎么办呢,SpringBoot推荐你可以来使用模板引擎.</p><p>​那么这模板引擎,我们其实大家听到很多,其实jsp就是一个模板引擎,还有以用的比较多额freemarker,包括SpringBoot给我们推荐的thymeleaf,模板引擎有很多种.</p><p>但再多的模板引擎,他们的思想都是一样的.</p><h2 id="Thymeleaf优势"><a href="#Thymeleaf优势" class="headerlink" title="Thymeleaf优势"></a>Thymeleaf优势</h2><ul><li>SpringBoot官方推荐的视图模板技术,和SpringBoot完美结合</li><li>不经过服务器运算仍然可以直接查看原始值,对前端工程师很友好</li><li>与其它模板引擎相比，<strong>Thymeleaf 最大的特点是能够直接在浏览器中打开并正确显示模板页面，而不需要启动整个 Web 应用</strong></li></ul><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>只要需要thymeleaf,只需要导入相应的依赖即可,我们将html放到templates目录下即可.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">DEFAULT_PREFIX</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;classpath:/templates/&quot;</span>;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">DEFAULT_SUFFIX</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;.html&quot;</span>;<br></code></pre></td></tr></table></figure><h2 id="Thymeleaf表达式"><a href="#Thymeleaf表达式" class="headerlink" title="Thymeleaf表达式"></a>Thymeleaf表达式</h2><p>变量表达式:<code>$&#123;session.user.name&#125;</code></p><p>选择或星号表达式:<code>*&#123;customer.name&#125;</code></p><p>url表达式:<code>@&#123;/order/list&#125;</code></p><p>文本替换：<code>&lt;a th:href=&quot;|/update/$&#123;user.id&#125;|&quot;&gt;修改&lt;/a&gt;</code></p><p>字符串拼接：<code>&lt;a th:href=&quot;&#39;/approve/&#39; + $&#123;user.id&#125;&quot;&gt;审核&lt;/a&gt;</code></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>原创笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>前端</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Session和Cookie</title>
+    <link href="/2022/08/17/Session%E5%92%8CCookie/"/>
+    <url>/2022/08/17/Session%E5%92%8CCookie/</url>
+    
+    <content type="html"><![CDATA[<h2 id="为什么要用到session和cookie呢"><a href="#为什么要用到session和cookie呢" class="headerlink" title="为什么要用到session和cookie呢?"></a>为什么要用到session和cookie呢?</h2><p>因为http请求不论是1次还是100次都不会记住你,http协议是无状态的</p><p>那么,在一些场合,确实需要服务器记住我们,我们的用户信息,比如用户登录邮箱,接下来发送邮件查看邮件,总不能每次都让用户输入用户信息来进行验证吧,为了解决这个问题呢,session的方案就诞生了,他不是一款新技术,不能脱离HTTP协议以及任何现有的web’技术</p><p>​原理是什么,就好比你去游泳馆游泳,第一次进入游泳馆是没有钥匙的,这个时候你付完钱,服务台就分配给一把钥匙给你,你在游泳馆的哪里你都要带上,因为这是你身份的唯一标识,接下来你用的这把钥匙你可以打开你的一个专有的储物柜存储你的衣物,游完泳,你再用钥匙去打开柜子拿出衣物,最后离开游泳馆时呢,把钥匙归还.</p><p>​你这次来游泳馆的流程就是一次session,或者叫做会话,在这个例子中,session的key就是你的钥匙,储物柜就是存储用户会话信息的的介质</p><p>​那么在web server中如何实现session呢?想必看了上面的例子就可以理解需要解决哪两个问题?</p><p>​一个是钥匙,还有就是session存储用户的信息的问题</p><h2 id="简单解释一下Cookie"><a href="#简单解释一下Cookie" class="headerlink" title="简单解释一下Cookie"></a>简单解释一下Cookie</h2><p>cookie属于一个小文件,用于保存用户的个人喜好和一些设定</p><p>如果网站的seesionId验证做账号密码传递交换,并且相依赖于cookie安全设定而生成的sessionId,被包在里面</p><h2 id="为什么不把所有数据都放入Cookie呢-为什么还要把sessionId单独放到Cookie中"><a href="#为什么不把所有数据都放入Cookie呢-为什么还要把sessionId单独放到Cookie中" class="headerlink" title="为什么不把所有数据都放入Cookie呢?为什么还要把sessionId单独放到Cookie中?"></a>为什么不把所有数据都放入Cookie呢?为什么还要把sessionId单独放到Cookie中?</h2><ol><li>**Cookie的长度限制:**首先最基本的,Cookie是有长度限制的,这限制了它能存储的数据的长度</li><li>**性能影响:**Cookie确实和Session一样可以让服务端程序跟踪每个客户端的访问,但是每次客户端的访问都必须传回这些Cookie中存储的数据比较多的话,这无疑增加了客户端与服务端之间的数据传输量,增加了服务器的压力</li><li><strong>安全性:</strong> Session数据其实是属于服务端的数据,而Cookie属于客户端,把本应该在Session中存储的数据放到客户端Cookie,使得服务端延伸到外部网络及客户端,显然是存在安全性上的问题的,当然我们可以对这些数据做加密,不过从技术来讲物理上不接触才是最安全的.</li></ol><h2 id="Cookie有哪些有缺点"><a href="#Cookie有哪些有缺点" class="headerlink" title="Cookie有哪些有缺点?"></a>Cookie有哪些有缺点?</h2><p>**缺点:**因为cookie的传送是明码传送,所有对于隐私或者机密的文件不建议以此方式保存</p><p>**优点:**因为cookie是存储在客户端的,这样就有些资料存在客户端以至于达到不给服务器</p><p>造成过载的效果.</p><p>存在用户端的cookie,不会因为浏览器的关闭就直接消失,而是等到cookie的时效失效而消失</p><h2 id="为什么不把用户信息存入cookie里呢"><a href="#为什么不把用户信息存入cookie里呢" class="headerlink" title="为什么不把用户信息存入cookie里呢?"></a>为什么不把用户信息存入cookie里呢?</h2><p>因为cookie可以拿来被解密,从而被篡改</p><p>比方,今天我是用用户a登入,改成另一种身份,叫b,server一读取数据,误以为你是a,就将a身份能用得权限给到b,</p><p>提高了安全风险,</p><p>所以在cookie应用时,通常会加上signedCookie签章,来扰乱视听,让我们的cookie不容易被篡改</p><h2 id="为什么要把SessionId保存到Cookie里面呢"><a href="#为什么要把SessionId保存到Cookie里面呢" class="headerlink" title="为什么要把SessionId保存到Cookie里面呢?"></a>为什么要把SessionId保存到Cookie里面呢?</h2><p>SessionId不包含用户数据,只是一个唯一标识,可以在Cookie里面长期保存,用户打开网站,通过SessionId去直接获取数据,达到长期保存快速登录效果,同时不同项目都可以使用Cookie来获取这个SessionId 还可以达到Session共享的目的</p><h2 id="简单解释一下session"><a href="#简单解释一下session" class="headerlink" title="简单解释一下session"></a>简单解释一下session</h2><p>session主要存在于服务端的位置,安全性较高</p><p>主要记录,在此网站获取到的用户信息,</p><p>session在服务器会在一个用户完成身份验证后,存储下所需的用户信息,接着产生一组对应的id,存入cookie后传回到客户端</p><h2 id="session和cookie主要用于哪里呢"><a href="#session和cookie主要用于哪里呢" class="headerlink" title="session和cookie主要用于哪里呢?"></a>session和cookie主要用于哪里呢?</h2><p>Cookie主要用于购物车,下次购买的订单记录,记住我的账号密码,下次不用重新输入等</p><p>session主要用于用户登录信息验证,使用者上次到访日期 网站的计数器</p><h3 id="Session会在浏览器关闭后消失吗"><a href="#Session会在浏览器关闭后消失吗" class="headerlink" title="Session会在浏览器关闭后消失吗?"></a>Session会在浏览器关闭后消失吗?</h3><p>大部分的Session机制都是用进程中Cookie来保存SessionId的,关闭浏览器后这个进程也就自动消失了,进程中的Cookie自然就消失了,那么SessionId也跟着消失了,再次连接到服务器时也就无法找到原来的Session了.</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>原创笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>分布式架构</title>
+    <link href="/2022/08/17/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84/"/>
+    <url>/2022/08/17/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84/</url>
+    
+    <content type="html"><![CDATA[<h2 id="分布式架构是什么"><a href="#分布式架构是什么" class="headerlink" title="分布式架构是什么"></a>分布式架构是什么</h2><p>​相对于单机而言,分布式至少是多机部署,多机共同分担任务处理</p><p>​将系统演变为垂直应用架构之后,当垂直应用越来越多,重复编写的业务代码就会越来越多.此时,我们的代码抽象出来,形成统一的服务,供其他系统或者业务模块调用,这就是分布式架构</p><h2 id="为什么要使用分布式-优缺点有哪些"><a href="#为什么要使用分布式-优缺点有哪些" class="headerlink" title="为什么要使用分布式,优缺点有哪些"></a>为什么要使用分布式,优缺点有哪些</h2><h4 id="分布式优点"><a href="#分布式优点" class="headerlink" title="分布式优点"></a>分布式优点</h4><ul><li>增大系统容量:垂直或是书评拆分业务系统,让变成一个分布式的架构</li><li>加强系统可用:通过分布式架构来冗余系统以消除单点故障,从而提高系统的可用性</li><li>模块重用度高</li><li>软件服务模块被拆分,开发和发布系统可以并行而变得更快</li><li>系统扩展性更高</li><li>团队协作流程改善</li></ul><h4 id="分布式缺点"><a href="#分布式缺点" class="headerlink" title="分布式缺点"></a>分布式缺点</h4><ul><li>架构设计变得复杂(尤其是其中的分布式事务)</li><li>部署单个服务会比较块,但是如果一次部署需要多个服务,流程会变得复杂</li><li>系统的吞吐量,但是响应时间会边长</li><li>运维复杂度会因为服务变多而变得很复杂</li><li>管理分布式系统中的服务和调度变得困难和复杂</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>原创笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>分布式</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>反射</title>
+    <link href="/2022/08/17/%E5%8F%8D%E5%B0%84/"/>
+    <url>/2022/08/17/%E5%8F%8D%E5%B0%84/</url>
+    
+    <content type="html"><![CDATA[<h2 id="反射机制"><a href="#反射机制" class="headerlink" title="反射机制"></a>反射机制</h2><h3 id="静态-动态语言"><a href="#静态-动态语言" class="headerlink" title="静态-动态语言"></a>静态-动态语言</h3><ul><li>​动态语言<ul><li>是一类在运行时可以改变其结构的语言:例如新的函数,对象,甚至代码可以被引进,已有的函数可以被删除或是其他结构的变化,通俗点说就是在运行的时候,代码可以根据某些条件改变自身结构</li><li>主要动态语言:Object-C C# JavaScript PHP Python等.</li></ul></li><li>静态语言<ul><li>与动态语言相对应的,运行时结构不可变的语言就是静态语言,如Java,C ,C++.</li><li>Java不是动态语言,但java可以称之为”<strong>准动态语言</strong>“.即java有一定的动态性,我们可以利用<strong>反射机制</strong>获得类似动态语言的特性,Java的动态性让编程的时候更加灵活.</li></ul></li></ul><h3 id="Java-Reflection-反射"><a href="#Java-Reflection-反射" class="headerlink" title="Java Reflection(反射)"></a>Java Reflection(反射)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">Class c=Class.forName(<span class="hljs-string">&quot;java.lang.String&quot;</span>);<br></code></pre></td></tr></table></figure><ul><li><p><strong>Reflection(反射)<strong>是java被视为动态语言的关键,反射机制允许程序在执行期借助于</strong>Reflection API</strong>取得<strong>任何类</strong>的内部信息,并能直接操作<strong>任意对象</strong>的<strong>内部属性及方法</strong></p></li><li><p>加载完类之后,在堆内存的方法区中就产生了一个Class类型的对象,(一个类只有一个Class对象),这个对象就包含了完整的类的结构信息,我们可以通过这个对象看到类的结构,这个对象就像一面镜子,透过这个镜子看到类的结构,所以,我们称之为: <strong>反射</strong></p></li></ul><p>正常方式:<code>引入需要的&quot;包类&quot;名称</code>——&gt;<code>通过new实例化</code>——&gt;<code>取得实例化对象</code></p><p>反射方式:<code>实例化对象</code>——&gt;<code>getClass()方法</code>——&gt;<code>得到完整的&quot;包类&quot;名称</code></p><h3 id="Java反射机制研究及应用"><a href="#Java反射机制研究及应用" class="headerlink" title="Java反射机制研究及应用"></a>Java反射机制研究及应用</h3><h4 id="java反射机制提供的功能"><a href="#java反射机制提供的功能" class="headerlink" title="java反射机制提供的功能"></a>java反射机制提供的功能</h4><ul><li><p>在运行时判断任意一个对象所属的类</p></li><li><p>在运行时构造任意一个类的对象</p></li><li><p>在运行时判断任意一个类所具有的成员变量和方法</p></li><li><p>在运行时获取泛型信息</p></li><li><p>在运行时调用任意一个对象的成员变量和方法</p></li><li><p>在运行时处理注解</p></li><li><p>生成动态代理….</p><h4 id="Java反射优点和缺点"><a href="#Java反射优点和缺点" class="headerlink" title="Java反射优点和缺点"></a>Java反射优点和缺点</h4></li><li><p>优点:</p><ul><li>可以实现动态创建对象和编译,体现出很大的灵活性</li></ul></li><li><p>缺点:</p><ul><li>对性能有影响,使用反射基本是一种解释操作,我们可以告诉jvm,我们希望做什么并且它满足我们的要求.这类操作总是慢于直接执行相同的操作</li></ul></li></ul><h4 id="反射相关的主要API"><a href="#反射相关的主要API" class="headerlink" title="反射相关的主要API"></a>反射相关的主要API</h4><ul><li>Java.lang.Class:代表一个类</li><li>Java.lang.reflect.Method:代表类的方法</li><li>Java.lang.reflect.Field:代表类的成员变量</li><li>Java.lang.reflect.Constructor:代表类的构造器</li><li>…..</li></ul><h4 id="Class类"><a href="#Class类" class="headerlink" title="Class类"></a>Class类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">Public <span class="hljs-keyword">final</span> Class <span class="hljs-title function_">getClass</span><span class="hljs-params">()</span><br></code></pre></td></tr></table></figure><ul><li><p>在Object类中定义了以下的方法,此方法将被所有子类继承</p></li><li><p>以上的方法返回值的类型是一个Class类,此类是Java反射的源头,实际上所谓反射从程序的运行结果来看也很好理解,即:可以通过对象反射求出类的名称</p></li><li><p>对象照镜子后可以得到的信息:某个类的属性,方法和构造器,某个类到底实现了哪些接口,对于每个类而言,JRE都为其保留一个不变的Class类型的对象,一个Class对象包含了特定某个结构(class&#x2F;interface&#x2F;enum&#x2F;annotation&#x2F;primittive type&#x2F;void[])的有关信息.</p><ul><li>Class本身也是一个类</li><li>Class对象只能由系统建立对象</li><li>一个加载的类在JVM中只会有一个Class实例</li><li>一个Class对象对应的是一个加载到JVM中的一个.class文件</li><li>每个类的实例都会记得自己是由哪个Class示例所生成</li><li>通过Class可以完整地得到一个类中地所有被加载的结构</li><li>Class类是Reflection的根源,针对任何你想动态加载,运行的类,唯有先获得相应的Class对象</li></ul></li></ul><h4 id="Class类的常用方法"><a href="#Class类的常用方法" class="headerlink" title="Class类的常用方法"></a>Class类的常用方法</h4><p>​</p><table><thead><tr><th align="center">方法名</th><th align="center">功能说明</th></tr></thead><tbody><tr><td align="center">static ClassforName(String name)</td><td align="center">返回指定类名name的Class对象</td></tr><tr><td align="center">Object newInstance()</td><td align="center">调用缺省构造函数,返回Class对象</td></tr><tr><td align="center">getName()</td><td align="center">返回此Class对象所表示的实体(类,接口,数组类或void)的名称</td></tr><tr><td align="center">Class getSuperClass()</td><td align="center">返回当前Class对象的父类的Class对象</td></tr><tr><td align="center">Class[] getinterface</td><td align="center">返回当前Class对象的接口</td></tr><tr><td align="center">ClassLoader getClassLoader()</td><td align="center">返回类的加载器</td></tr><tr><td align="center">Constructor[] getConstructos()</td><td align="center">返回一个包含某些Constructor对象的数组</td></tr></tbody></table>]]></content>
+    
+    
+    <categories>
+      
+      <category>原创笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>

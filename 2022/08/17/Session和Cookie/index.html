@@ -1,0 +1,723 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/qinh1.png">
+  <link rel="icon" href="/img/qinh1.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="qinh">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="为什么要用到session和cookie呢?因为http请求不论是1次还是100次都不会记住你,http协议是无状态的 那么,在一些场合,确实需要服务器记住我们,我们的用户信息,比如用户登录邮箱,接下来发送邮件查看邮件,总不能每次都让用户输入用户信息来进行验证吧,为了解决这个问题呢,session的方案就诞生了,他不是一款新技术,不能脱离HTTP协议以及任何现有的web’技术 ​	原理是什么,就好">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Session和Cookie">
+<meta property="og:url" content="http://example.com/2022/08/17/Session%E5%92%8CCookie/index.html">
+<meta property="og:site_name" content="qinh">
+<meta property="og:description" content="为什么要用到session和cookie呢?因为http请求不论是1次还是100次都不会记住你,http协议是无状态的 那么,在一些场合,确实需要服务器记住我们,我们的用户信息,比如用户登录邮箱,接下来发送邮件查看邮件,总不能每次都让用户输入用户信息来进行验证吧,为了解决这个问题呢,session的方案就诞生了,他不是一款新技术,不能脱离HTTP协议以及任何现有的web’技术 ​	原理是什么,就好">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-17T09:06:26.000Z">
+<meta property="article:modified_time" content="2022-08-17T09:26:09.657Z">
+<meta property="article:author" content="qinh">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Session和Cookie - qinh</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"D3wzaPz8VqfQjffwqH3d7F5Y-MdYXbMMI","app_key":"WvFo4ILI4R3jsJcTQ1ryfxFV","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>qinh</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default1.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Session和Cookie"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-17 17:06" pubdate>
+          2022年8月17日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Session和Cookie</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="为什么要用到session和cookie呢"><a href="#为什么要用到session和cookie呢" class="headerlink" title="为什么要用到session和cookie呢?"></a>为什么要用到session和cookie呢?</h2><p>因为http请求不论是1次还是100次都不会记住你,http协议是无状态的</p>
+<p>那么,在一些场合,确实需要服务器记住我们,我们的用户信息,比如用户登录邮箱,接下来发送邮件查看邮件,总不能每次都让用户输入用户信息来进行验证吧,为了解决这个问题呢,session的方案就诞生了,他不是一款新技术,不能脱离HTTP协议以及任何现有的web’技术</p>
+<p>​	原理是什么,就好比你去游泳馆游泳,第一次进入游泳馆是没有钥匙的,这个时候你付完钱,服务台就分配给一把钥匙给你,你在游泳馆的哪里你都要带上,因为这是你身份的唯一标识,接下来你用的这把钥匙你可以打开你的一个专有的储物柜存储你的衣物,游完泳,你再用钥匙去打开柜子拿出衣物,最后离开游泳馆时呢,把钥匙归还.</p>
+<p>​	你这次来游泳馆的流程就是一次session,或者叫做会话,在这个例子中,session的key就是你的钥匙,储物柜就是存储用户会话信息的的介质</p>
+<p>​	那么在web server中如何实现session呢?想必看了上面的例子就可以理解需要解决哪两个问题?</p>
+<p>​	一个是钥匙,还有就是session存储用户的信息的问题</p>
+<h2 id="简单解释一下Cookie"><a href="#简单解释一下Cookie" class="headerlink" title="简单解释一下Cookie"></a>简单解释一下Cookie</h2><p>cookie属于一个小文件,用于保存用户的个人喜好和一些设定</p>
+<p>如果网站的seesionId验证做账号密码传递交换,并且相依赖于cookie安全设定而生成的sessionId,被包在里面</p>
+<h2 id="为什么不把所有数据都放入Cookie呢-为什么还要把sessionId单独放到Cookie中"><a href="#为什么不把所有数据都放入Cookie呢-为什么还要把sessionId单独放到Cookie中" class="headerlink" title="为什么不把所有数据都放入Cookie呢?为什么还要把sessionId单独放到Cookie中?"></a>为什么不把所有数据都放入Cookie呢?为什么还要把sessionId单独放到Cookie中?</h2><ol>
+<li>**Cookie的长度限制:**首先最基本的,Cookie是有长度限制的,这限制了它能存储的数据的长度</li>
+<li>**性能影响:**Cookie确实和Session一样可以让服务端程序跟踪每个客户端的访问,但是每次客户端的访问都必须传回这些Cookie中存储的数据比较多的话,这无疑增加了客户端与服务端之间的数据传输量,增加了服务器的压力</li>
+<li><strong>安全性:</strong> Session数据其实是属于服务端的数据,而Cookie属于客户端,把本应该在Session中存储的数据放到客户端Cookie,使得服务端延伸到外部网络及客户端,显然是存在安全性上的问题的,当然我们可以对这些数据做加密,不过从技术来讲物理上不接触才是最安全的.</li>
+</ol>
+<h2 id="Cookie有哪些有缺点"><a href="#Cookie有哪些有缺点" class="headerlink" title="Cookie有哪些有缺点?"></a>Cookie有哪些有缺点?</h2><p>**缺点:**因为cookie的传送是明码传送,所有对于隐私或者机密的文件不建议以此方式保存</p>
+<p>**优点:**因为cookie是存储在客户端的,这样就有些资料存在客户端以至于达到不给服务器</p>
+<p>造成过载的效果.</p>
+<p>存在用户端的cookie,不会因为浏览器的关闭就直接消失,而是等到cookie的时效失效而消失</p>
+<h2 id="为什么不把用户信息存入cookie里呢"><a href="#为什么不把用户信息存入cookie里呢" class="headerlink" title="为什么不把用户信息存入cookie里呢?"></a>为什么不把用户信息存入cookie里呢?</h2><p>因为cookie可以拿来被解密,从而被篡改</p>
+<p>比方,今天我是用用户a登入,改成另一种身份,叫b,server一读取数据,误以为你是a,就将a身份能用得权限给到b,</p>
+<p>提高了安全风险,</p>
+<p>所以在cookie应用时,通常会加上signedCookie签章,来扰乱视听,让我们的cookie不容易被篡改</p>
+<h2 id="为什么要把SessionId保存到Cookie里面呢"><a href="#为什么要把SessionId保存到Cookie里面呢" class="headerlink" title="为什么要把SessionId保存到Cookie里面呢?"></a>为什么要把SessionId保存到Cookie里面呢?</h2><p>SessionId不包含用户数据,只是一个唯一标识,可以在Cookie里面长期保存,用户打开网站,通过SessionId去直接获取数据,达到长期保存快速登录效果,同时不同项目都可以使用Cookie来获取这个SessionId 还可以达到Session共享的目的</p>
+<h2 id="简单解释一下session"><a href="#简单解释一下session" class="headerlink" title="简单解释一下session"></a>简单解释一下session</h2><p>session主要存在于服务端的位置,安全性较高</p>
+<p>主要记录,在此网站获取到的用户信息,</p>
+<p>session在服务器会在一个用户完成身份验证后,存储下所需的用户信息,接着产生一组对应的id,存入cookie后传回到客户端</p>
+<h2 id="session和cookie主要用于哪里呢"><a href="#session和cookie主要用于哪里呢" class="headerlink" title="session和cookie主要用于哪里呢?"></a>session和cookie主要用于哪里呢?</h2><p>Cookie主要用于购物车,下次购买的订单记录,记住我的账号密码,下次不用重新输入等</p>
+<p>session主要用于用户登录信息验证,使用者上次到访日期 网站的计数器</p>
+<h3 id="Session会在浏览器关闭后消失吗"><a href="#Session会在浏览器关闭后消失吗" class="headerlink" title="Session会在浏览器关闭后消失吗?"></a>Session会在浏览器关闭后消失吗?</h3><p>大部分的Session机制都是用进程中Cookie来保存SessionId的,关闭浏览器后这个进程也就自动消失了,进程中的Cookie自然就消失了,那么SessionId也跟着消失了,再次连接到服务器时也就无法找到原来的Session了.</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8E%9F%E5%88%9B%E7%AC%94%E8%AE%B0/" class="category-chain-item">原创笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/java/">#java</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Session和Cookie</div>
+      <div>http://example.com/2022/08/17/Session和Cookie/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qinh</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月17日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/17/Thymeleaf/" title="Thymeleaf">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Thymeleaf</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/17/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84/" title="分布式架构">
+                        <span class="hidden-mobile">分布式架构</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"D3wzaPz8VqfQjffwqH3d7F5Y-MdYXbMMI","appKey":"WvFo4ILI4R3jsJcTQ1ryfxFV","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://space.bilibili.com/313919490?spm_id_from=333.1007.0.0" target="_blank" rel="nofollow noopener"><span>qinh</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
