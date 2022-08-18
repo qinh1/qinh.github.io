@@ -18,22 +18,22 @@
   <meta name="author" content="qinh">
   <meta name="keywords" content="">
   
-    <meta name="description" content="反射机制静态-动态语言 ​	动态语言 是一类在运行时可以改变其结构的语言:例如新的函数,对象,甚至代码可以被引进,已有的函数可以被删除或是其他结构的变化,通俗点说就是在运行的时候,代码可以根据某些条件改变自身结构 主要动态语言:Object-C C# JavaScript PHP Python等.   静态语言 与动态语言相对应的,运行时结构不可变的语言就是静态语言,如Java,C ,C++. J">
+    <meta name="description" content="代理模式我们为什么要学习代理模式 SpringAOP和SpringMVC的底层设计模式就是代理模式 代理模式:  静态代理 动态代理  静态代理角色分析:  抽象角色:一般使用接口或者抽象类来实现 真实角色:被代理的角色 代理角色:代理真实角色,代理真实角色后,一般会做一些附属的操作 客户:使用代理角色来进行一些操作.  代理模式的好处:  可以使真实的操作更加纯粹!不用关注一些公共的业务 公共也">
 <meta property="og:type" content="article">
-<meta property="og:title" content="反射">
-<meta property="og:url" content="http://example.com/2022/08/17/%E5%8F%8D%E5%B0%84/index.html">
+<meta property="og:title" content="代理模式">
+<meta property="og:url" content="http://example.com/2022/08/19/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="qinh">
-<meta property="og:description" content="反射机制静态-动态语言 ​	动态语言 是一类在运行时可以改变其结构的语言:例如新的函数,对象,甚至代码可以被引进,已有的函数可以被删除或是其他结构的变化,通俗点说就是在运行的时候,代码可以根据某些条件改变自身结构 主要动态语言:Object-C C# JavaScript PHP Python等.   静态语言 与动态语言相对应的,运行时结构不可变的语言就是静态语言,如Java,C ,C++. J">
+<meta property="og:description" content="代理模式我们为什么要学习代理模式 SpringAOP和SpringMVC的底层设计模式就是代理模式 代理模式:  静态代理 动态代理  静态代理角色分析:  抽象角色:一般使用接口或者抽象类来实现 真实角色:被代理的角色 代理角色:代理真实角色,代理真实角色后,一般会做一些附属的操作 客户:使用代理角色来进行一些操作.  代理模式的好处:  可以使真实的操作更加纯粹!不用关注一些公共的业务 公共也">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-08-17T08:53:32.000Z">
-<meta property="article:modified_time" content="2022-08-18T03:11:49.712Z">
+<meta property="article:published_time" content="2022-08-18T16:39:21.000Z">
+<meta property="article:modified_time" content="2022-08-18T16:40:31.382Z">
 <meta property="article:author" content="qinh">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>反射 - qinh</title>
+  <title>代理模式 - qinh</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="反射"></span>
+            <span id="subtitle" data-typed-text="代理模式"></span>
           
         </div>
 
@@ -226,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-17 16:53" pubdate>
-          2022年8月17日 下午
+        <time datetime="2022-08-19 00:39" pubdate>
+          2022年8月19日 凌晨
         </time>
       </span>
     
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k 字
+          1.2k 字
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          16 分钟
+          11 分钟
         
       </span>
     
@@ -295,125 +295,50 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">反射</h1>
+            <h1 style="display: none">代理模式</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="反射机制"><a href="#反射机制" class="headerlink" title="反射机制"></a>反射机制</h2><h3 id="静态-动态语言"><a href="#静态-动态语言" class="headerlink" title="静态-动态语言"></a>静态-动态语言</h3><ul>
-<li>​	动态语言<ul>
-<li>是一类在运行时可以改变其结构的语言:例如新的函数,对象,甚至代码可以被引进,已有的函数可以被删除或是其他结构的变化,通俗点说就是在运行的时候,代码可以根据某些条件改变自身结构</li>
-<li>主要动态语言:Object-C C# JavaScript PHP Python等.</li>
-</ul>
-</li>
-<li>静态语言<ul>
-<li>与动态语言相对应的,运行时结构不可变的语言就是静态语言,如Java,C ,C++.</li>
-<li>Java不是动态语言,但java可以称之为”<strong>准动态语言</strong>“.即java有一定的动态性,我们可以利用<strong>反射机制</strong>获得类似动态语言的特性,Java的动态性让编程的时候更加灵活.</li>
-</ul>
-</li>
-</ul>
-<h3 id="Java-Reflection-反射"><a href="#Java-Reflection-反射" class="headerlink" title="Java Reflection(反射)"></a>Java Reflection(反射)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">Class c=Class.forName(<span class="hljs-string">&quot;java.lang.String&quot;</span>);<br></code></pre></td></tr></table></figure>
-
-
-
+                <h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><p>我们为什么要学习代理模式</p>
+<p>SpringAOP和SpringMVC的底层设计模式就是代理模式</p>
+<p>代理模式:</p>
 <ul>
-<li><p><strong>Reflection(反射)</strong>  是java被视为动态语言的关键,反射机制允许程序在执行期借助于<strong>Reflection API</strong>取得<strong>任何类</strong>的内部信息,并能直接操作<strong>任意对象</strong>的<strong>内部属性及方法</strong></p>
-</li>
-<li><p>加载完类之后,在堆内存的方法区中就产生了一个Class类型的对象,(一个类只有一个Class对象),这个对象就包含了完整的类的结构信息,我们可以通过这个对象看到类的结构,这个对象就像一面镜子,透过这个镜子看到类的结构,所以,我们称之为: <strong>反射</strong></p>
-</li>
+<li>静态代理</li>
+<li>动态代理</li>
 </ul>
-<p>正常方式:	<code>引入需要的&quot;包类&quot;名称</code>——&gt;<code>通过new实例化</code>——&gt;<code>取得实例化对象</code></p>
-<p>反射方式:	<code>实例化对象</code>——&gt;<code>getClass()方法</code>——&gt;<code>得到完整的&quot;包类&quot;名称</code></p>
-<h3 id="Java反射机制研究及应用"><a href="#Java反射机制研究及应用" class="headerlink" title="Java反射机制研究及应用"></a>Java反射机制研究及应用</h3><h4 id="java反射机制提供的功能"><a href="#java反射机制提供的功能" class="headerlink" title="java反射机制提供的功能"></a>java反射机制提供的功能</h4><ul>
-<li><p>在运行时判断任意一个对象所属的类</p>
-</li>
-<li><p>在运行时构造任意一个类的对象</p>
-</li>
-<li><p>在运行时判断任意一个类所具有的成员变量和方法</p>
-</li>
-<li><p>在运行时获取泛型信息</p>
-</li>
-<li><p>在运行时调用任意一个对象的成员变量和方法</p>
-</li>
-<li><p>在运行时处理注解</p>
-</li>
-<li><p>生成动态代理….</p>
-<h4 id="Java反射优点和缺点"><a href="#Java反射优点和缺点" class="headerlink" title="Java反射优点和缺点"></a>Java反射优点和缺点</h4></li>
-<li><p>优点:</p>
+<p>静态代理角色分析:</p>
 <ul>
-<li>可以实现动态创建对象和编译,体现出很大的灵活性</li>
+<li>抽象角色:一般使用接口或者抽象类来实现</li>
+<li>真实角色:被代理的角色</li>
+<li>代理角色:代理真实角色,代理真实角色后,一般会做一些附属的操作</li>
+<li>客户:使用代理角色来进行一些操作.</li>
 </ul>
-</li>
-<li><p>缺点:</p>
+<p>代理模式的好处:</p>
 <ul>
-<li>对性能有影响,使用反射基本是一种解释操作,我们可以告诉jvm,我们希望做什么并且它满足我们的要求.这类操作总是慢于直接执行相同的操作</li>
+<li>可以使真实的操作更加纯粹!不用关注一些公共的业务</li>
+<li>公共也就是交代给代理角色,实现了业务的分工</li>
+<li>公共的业务发生扩展的时候,方便集中管理!</li>
 </ul>
-</li>
+<p>缺点:</p>
+<ul>
+<li>一个真实角色就会产生一个代理角色,代码量会翻倍-开发效率会变低~</li>
 </ul>
-<h4 id="反射相关的主要API"><a href="#反射相关的主要API" class="headerlink" title="反射相关的主要API"></a>反射相关的主要API</h4><ul>
-<li>Java.lang.Class:代表一个类</li>
-<li>Java.lang.reflect.Method:代表类的方法</li>
-<li>Java.lang.reflect.Field:代表类的成员变量</li>
-<li>Java.lang.reflect.Constructor:代表类的构造器</li>
-</ul>
-<h4 id="Class类"><a href="#Class类" class="headerlink" title="Class类"></a>Class类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">Public <span class="hljs-keyword">final</span> Class <span class="hljs-title function_">getClass</span><span class="hljs-params">()</span><br></code></pre></td></tr></table></figure>
+<h3 id="代理模式的定义"><a href="#代理模式的定义" class="headerlink" title="代理模式的定义"></a>代理模式的定义</h3><p><em>为其他对象提供一种代理以控制对这个对象的访问</em>*</p>
+<p>说白了,我们可以理解为生活中常见的中介或者明星经纪人,我们买房一般都会通过中介,但是最后卖房的却是开发商,可以认为中介就是开发商的代理.</p>
+<p>代理模式就是一种设计模式,能够使得在不修改目标的前提下,额外扩展原目标的功能,即通过源目标的代理类,再由代理类去访问源目标.这样一来,要拓展功能,就无需修改源目标的代码了.只需要在代理类增加就可以了!</p>
+<h3 id="代理模式的使用场景"><a href="#代理模式的使用场景" class="headerlink" title="代理模式的使用场景"></a>代理模式的使用场景</h3><p>当<strong>不能访问</strong>或<strong>不想直接访问</strong>或访问某个对象存在困难时,我们可以通过一个代理对象来间接访问,为了客户端使用的透明性,我们应该<strong>保证代理对象和被代理对象应该实现同一个接口</strong></p>
+<p>以买房为例定义接口(<strong>静态代理</strong>)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Buy</span> &#123;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">buyHouse</span><span class="hljs-params">(<span class="hljs-type">long</span> money)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<p>小明去买房,小明也就是被代理对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Xiaoming</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Buy</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">buyHouse</span><span class="hljs-params">(<span class="hljs-type">long</span> money)</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;我买房了，用了&quot;</span>+money+<span class="hljs-string">&quot; 钱 &quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<p>中介,也是代理对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserProxy</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Buy</span> &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     *这个是真实对象，买房一定是真实对象来买的，中介只是跑腿的</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> Buy mBuy;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">UserProxy</span><span class="hljs-params">(Buy mBuy)</span> &#123;<br>        <span class="hljs-built_in">this</span>.mBuy = mBuy;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">buyHouse</span><span class="hljs-params">(<span class="hljs-type">long</span> money)</span> &#123;<br>        <span class="hljs-comment">/**</span><br><span class="hljs-comment">         * 这里是我们出钱去买房,中介只是帮忙</span><br><span class="hljs-comment">         */</span><br>        mBuy.buyHouse(newMoney);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<ul>
-<li><p>在Object类中定义了以下的方法,此方法将被所有子类继承</p>
-</li>
-<li><p>以上的方法返回值的类型是一个Class类,此类是Java反射的源头,实际上所谓反射从程序的运行结果来看也很好理解,即:可以通过对象反射求出类的名称</p>
-</li>
-<li><p>对象照镜子后可以得到的信息:某个类的属性,方法和构造器,某个类到底实现了哪些接口,对于每个类而言,JRE都为其保留一个不变的Class类型的对象,一个Class对象包含了特定某个结构(class&#x2F;interface&#x2F;enum&#x2F;annotation&#x2F;primittive type&#x2F;void[])的有关信息.</p>
-<ul>
-<li>Class本身也是一个类</li>
-<li>Class对象只能由系统建立对象</li>
-<li>一个加载的类在JVM中只会有一个Class实例</li>
-<li>一个Class对象对应的是一个加载到JVM中的一个.class文件</li>
-<li>每个类的实例都会记得自己是由哪个Class示例所生成</li>
-<li>通过Class可以完整地得到一个类中地所有被加载的结构</li>
-<li>Class类是Reflection的根源,针对任何你想动态加载,运行的类,唯有先获得相应的Class对象</li>
-</ul>
-</li>
-</ul>
-<h4 id="Class类的常用方法"><a href="#Class类的常用方法" class="headerlink" title="Class类的常用方法"></a>Class类的常用方法</h4><p>​	</p>
-<table>
-<thead>
-<tr>
-<th align="center">方法名</th>
-<th align="center">功能说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">static ClassforName(String name)</td>
-<td align="center">返回指定类名name的Class对象</td>
-</tr>
-<tr>
-<td align="center">Object newInstance()</td>
-<td align="center">调用缺省构造函数,返回Class对象</td>
-</tr>
-<tr>
-<td align="center">getName()</td>
-<td align="center">返回此Class对象所表示的实体(类,接口,数组类或void)的名称</td>
-</tr>
-<tr>
-<td align="center">Class getSuperClass()</td>
-<td align="center">返回当前Class对象的父类的Class对象</td>
-</tr>
-<tr>
-<td align="center">Class[] getinterface</td>
-<td align="center">返回当前Class对象的接口</td>
-</tr>
-<tr>
-<td align="center">ClassLoader getClassLoader()</td>
-<td align="center">返回类的加载器</td>
-</tr>
-<tr>
-<td align="center">Constructor[] getConstructos()</td>
-<td align="center">返回一个包含某些Constructor对象的数组</td>
-</tr>
-</tbody></table>
+<p>如上就是静态代理的实现,我们可以看到代理类是在<strong>编译期间</strong>就已经存在的,而且UserProxy代理类也只能代理实现了Buy接口的类,而动态代理与静态代理相反,通过<strong>反射机制</strong>动态的生成代理者的对象,也就是说我们再code阶段根本不需要知道代理谁,代理谁将会在执行阶段决定!</p>
+<p><strong>&#x2F;&#x2F;目前这篇文章有待完善,动态代理会尽快补充:)</strong></p>
 
                 
               </div>
@@ -459,8 +384,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>反射</div>
-      <div>http://example.com/2022/08/17/反射/</div>
+      <div>代理模式</div>
+      <div>http://example.com/2022/08/19/代理模式/</div>
     </div>
     <div class="license-meta">
       
@@ -472,7 +397,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年8月17日</div>
+          <div>2022年8月19日</div>
         </div>
       
       
@@ -502,15 +427,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/17/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84/" title="分布式架构">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">分布式架构</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2022/08/17/photos/" title="photos">
+                        <span class="hidden-mobile">photos</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
