@@ -26,7 +26,7 @@
 <meta property="og:description" content="为什么要用到session和cookie呢?因为http请求不论是1次还是100次都不会记住你,http协议是无状态的 那么,在一些场合,确实需要服务器记住我们,我们的用户信息,比如用户登录邮箱,接下来发送邮件查看邮件,总不能每次都让用户输入用户信息来进行验证吧,为了解决这个问题呢,session的方案就诞生了,他不是一款新技术,不能脱离HTTP协议以及任何现有的web技术 ​	原理是什么,就好比">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-17T09:06:26.000Z">
-<meta property="article:modified_time" content="2022-08-18T03:17:12.190Z">
+<meta property="article:modified_time" content="2022-08-19T07:42:07.043Z">
 <meta property="article:author" content="qinh">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
@@ -309,12 +309,12 @@
 <h2 id="简单解释一下Cookie"><a href="#简单解释一下Cookie" class="headerlink" title="简单解释一下Cookie"></a>简单解释一下Cookie</h2><p>cookie属于一个小文件,用于保存用户的个人喜好和一些设定</p>
 <p>如果网站的seesionId验证做账号密码传递交换,并且相依赖于cookie安全设定而生成的sessionId,被包在里面</p>
 <h2 id="为什么不把所有数据都放入Cookie呢-为什么还要把sessionId单独放到Cookie中"><a href="#为什么不把所有数据都放入Cookie呢-为什么还要把sessionId单独放到Cookie中" class="headerlink" title="为什么不把所有数据都放入Cookie呢?为什么还要把sessionId单独放到Cookie中?"></a>为什么不把所有数据都放入Cookie呢?为什么还要把sessionId单独放到Cookie中?</h2><ol>
-<li>**Cookie的长度限制:**首先最基本的,Cookie是有长度限制的,这限制了它能存储的数据的长度</li>
-<li>**性能影响:**Cookie确实和Session一样可以让服务端程序跟踪每个客户端的访问,但是每次客户端的访问都必须传回这些Cookie中存储的数据比较多的话,这无疑增加了客户端与服务端之间的数据传输量,增加了服务器的压力</li>
-<li><strong>安全性:</strong> Session数据其实是属于服务端的数据,而Cookie属于客户端,把本应该在Session中存储的数据放到客户端Cookie,使得服务端延伸到外部网络及客户端,显然是存在安全性上的问题的,当然我们可以对这些数据做加密,不过从技术来讲物理上不接触才是最安全的.</li>
+<li><strong>Cookie的长度限制:</strong> 首先最基本的,Cookie是有长度限制的,这限制了它能存储的数据的长度</li>
+<li>**性能影响: **Cookie确实和Session一样可以让服务端程序跟踪每个客户端的访问,但是每次客户端的访问都必须传回这些Cookie中存储的数据比较多的话,这无疑增加了客户端与服务端之间的数据传输量,增加了服务器的压力</li>
+<li><strong>安全性:</strong>  Session数据其实是属于服务端的数据,而Cookie属于客户端,把本应该在Session中存储的数据放到客户端Cookie,使得服务端延伸到外部网络及客户端,显然是存在安全性上的问题的,当然我们可以对这些数据做加密,不过从技术来讲物理上不接触才是最安全的.</li>
 </ol>
-<h2 id="Cookie有哪些有缺点"><a href="#Cookie有哪些有缺点" class="headerlink" title="Cookie有哪些有缺点?"></a>Cookie有哪些有缺点?</h2><p>**缺点:**因为cookie的传送是明码传送,所有对于隐私或者机密的文件不建议以此方式保存</p>
-<p>**优点:**因为cookie是存储在客户端的,这样就有些资料存在客户端以至于达到不给服务器</p>
+<h2 id="Cookie有哪些有缺点"><a href="#Cookie有哪些有缺点" class="headerlink" title="Cookie有哪些有缺点?"></a>Cookie有哪些有缺点?</h2><p>**缺点: **因为cookie的传送是明码传送,所有对于隐私或者机密的文件不建议以此方式保存</p>
+<p>**优点: **因为cookie是存储在客户端的,这样就有些资料存在客户端以至于达到不给服务器</p>
 <p>造成过载的效果.</p>
 <p>存在用户端的cookie,不会因为浏览器的关闭就直接消失,而是等到cookie的时效失效而消失</p>
 <h2 id="为什么不把用户信息存入cookie里呢"><a href="#为什么不把用户信息存入cookie里呢" class="headerlink" title="为什么不把用户信息存入cookie里呢?"></a>为什么不把用户信息存入cookie里呢?</h2><p>因为cookie可以拿来被解密,从而被篡改</p>
